@@ -1,60 +1,50 @@
 ﻿/*
-int[] numbers = { 1, 2, 3, 4, 5 };
+int[] numbers = { -4, -3, -2, -1, 0, 1, 2, 3, 4 }; //Количество положительных чисел
+int result = 0;
+foreach (int number in numbers)
+{
+    if(number > 0)
+    {
+        result++;
+    }
+}
+Console.WriteLine($"Число элементов больше нуля: {result}");
+*/
+/*
+int[] numbers = { -4, -3, -2, -1, 0, 1, 2, 3, 4 }; //Инверсия массива
+
+int n = numbers.Length;
+int k = n / 2;
+int temp;
+for (int i = 0; i < k; i++)
+{
+    temp = numbers[i];
+    numbers[i] = numbers[n-i-1];
+    numbers[n-i-1] = temp;
+}
 foreach (int i in numbers)
 {
-    Console.WriteLine(i);
+    Console.Write($"{i}\t");
 }
 */
 
-/*
-int[] numbers = { 1, 2, 3, 4, 5 };
-for (int i = 0; i<numbers.Length; i++)
-{
-    Console.WriteLine(numbers[i]);
-}
-*/
-/*
-int[] numbers = { 1, 2, 3, 4, 5 };
-for (int i = 0; i < numbers.Length; i++)
-{
-        numbers[i] = numbers[i] * 2;
-    Console.WriteLine(numbers[i]);
-}
-*/
-/*
-int[] numbers = { 1, 2, 3, 4, 5 };
-int i = 0;
-while(i < numbers.Length)
-{
-    Console.WriteLine(numbers[i]);
-    i++;
-}
-*/
-/*
-int[,] numbers = { { 1, 2, 3 }, { 4, 5, 6 } };
+int[] nums = { 54, 7, -41, 2, 4, 2, 89, 33, -5, 12 }; //Программа сортировки массива
 
-int rows = numbers.GetUpperBound(0)+1;
-int columns = numbers.GetUpperBound(1)+1;
-for (int i = 0; i < rows; i++)
+int temp;
+for (int i = 0;i<nums.Length-1;i++)
 {
-    for(int j = 0; j < columns; j++)
+    for (int j = i+1; j<nums.Length;j++)
     {
-        Console.Write($"{numbers[i, j]} \t");
+        if (nums[i] > nums[j])
+        {
+            temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
     }
-    Console.WriteLine();
 }
-*/
-
-int[][] numbers = new int[3][];
-numbers[0]=new int[] {1,2};
-numbers[1] = new int[] { 1, 2, 3 };
-numbers[2] = new int[] { 1, 2, 3, 4, 5 };
-
-for (int i = 0; i < numbers.Length; i++)
+Console.WriteLine("Вывод отсортированного массиива");
+for (int i = 0; i<nums.Length;i++)
 {
-    for (int j = 0; j < numbers[i].Length; j++)
-    {
-        Console.Write($"{numbers[i][j]} \t");
-    }
-    Console.WriteLine();
+    Console.WriteLine(nums[i]);
 }
