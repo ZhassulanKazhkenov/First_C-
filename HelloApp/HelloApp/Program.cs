@@ -1,45 +1,43 @@
-﻿using System.Threading.Tasks.Sources;
-
+﻿/*
+string GetMessage()
+{
+    return "Hello";
+}
+*/
 void PrintMessage(string message)
 {
     Console.WriteLine(message);
 }
-
-PrintMessage("Hello work");
-PrintMessage("Hello java");
-PrintMessage("Hello c#");
-
-/*void Sum(int x, int y)
+PrintMessage(GetMessage());
+/*
+int Sum(int x, int y)
 {
-    int result = x + y;
-    Console.WriteLine($"{x} + {y} = {result}");
+    return x + y;
 }
 */
-void Sum(int x, int y) => Console.WriteLine($"{x} + {y} = { x + y }");
-int a = 10, b = 15, c = 6;
-Sum(10, 15);
-Sum(a, b);
-Sum(4, c);
-Sum(5, 5+a);
+int result = Sum(10, 15);
+Console.WriteLine(result);
+Console.WriteLine(Sum(5, 6));
 
-/*void PrintPerson(string name, int age)
+string GetMessage() => "hello";
+int Sum(int x, int y) => x + y;
+
+string GetHello()
 {
-    Console.WriteLine($"Name: {name} Age: {age}");
+    return "Hello";
+    Console.WriteLine("After return");
+}
+GetHello();
+
+void PrintPerson(string name, int age)
+{
+    if (age > 120 || age < 1)
+    {
+        Console.WriteLine("Недопустимый  возраст");
+        return;
+    }
+    Console.WriteLine($"Имя: {name} Возраст {age}");
 }
 
-byte z = 45;
-PrintPerson("Tom", z);
-*/
-
-void PrintPerson(string name, int age = 1, string company = "Undefined")
-{
-    Console.WriteLine($"Name: {name} Age: {age} Company: {company}");
-}
-
-PrintPerson("Tom", 37, "HP");
-PrintPerson("Tom", 37);
-PrintPerson("Tom");
-
-PrintPerson("Jerry", company: "Google", age: 56);
-PrintPerson(age: 33, name: "Zhassulan");
-PrintPerson(company: "Google", age: 56, name: "Aza");
+PrintPerson("Tom", 38);
+PrintPerson("Timmy", 1234);
