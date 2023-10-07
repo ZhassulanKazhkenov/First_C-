@@ -1,40 +1,45 @@
-﻿/*
-void SayHello()
+﻿using System.Threading.Tasks.Sources;
+
+void PrintMessage(string message)
 {
-    Console.WriteLine("Hello");
+    Console.WriteLine(message);
 }
 
-SayHello();
+PrintMessage("Hello work");
+PrintMessage("Hello java");
+PrintMessage("Hello c#");
+
+/*void Sum(int x, int y)
+{
+    int result = x + y;
+    Console.WriteLine($"{x} + {y} = {result}");
+}
+*/
+void Sum(int x, int y) => Console.WriteLine($"{x} + {y} = { x + y }");
+int a = 10, b = 15, c = 6;
+Sum(10, 15);
+Sum(a, b);
+Sum(4, c);
+Sum(5, 5+a);
+
+/*void PrintPerson(string name, int age)
+{
+    Console.WriteLine($"Name: {name} Age: {age}");
+}
+
+byte z = 45;
+PrintPerson("Tom", z);
 */
 
-void SayHelloRu()
+void PrintPerson(string name, int age = 1, string company = "Undefined")
 {
-    Console.WriteLine("Привет");
-}
-void SayHelloEn()
-{
-    Console.WriteLine("Hello");
+    Console.WriteLine($"Name: {name} Age: {age} Company: {company}");
 }
 
-void SayHelloFr()
-{
-    Console.WriteLine("Salut");
-}
+PrintPerson("Tom", 37, "HP");
+PrintPerson("Tom", 37);
+PrintPerson("Tom");
 
-string language = "en";
-
-switch (language)
-{
-    case "en":
-        SayHelloEn();
-        break;
-    case "ru":
-        SayHelloRu();
-        break;
-    case "fr":
-        SayHelloFr();
-        break;
-}
-
-void SayHello() => Console.WriteLine("Hello");
-SayHello();
+PrintPerson("Jerry", company: "Google", age: 56);
+PrintPerson(age: 33, name: "Zhassulan");
+PrintPerson(company: "Google", age: 56, name: "Aza");
