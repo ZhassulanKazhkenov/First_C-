@@ -1,43 +1,50 @@
 ﻿/*
-string GetMessage()
+void Increment (int n)
 {
-    return "Hello";
+    n++;
+    Console.WriteLine($"Число в методе Increment: {n}");
 }
 */
-void PrintMessage(string message)
+void Increment(ref int n)
 {
-    Console.WriteLine(message);
+    n++;
+    Console.WriteLine($"Число в методе Increment: {n}");
 }
-PrintMessage(GetMessage());
+
+int number = 5;
+Console.WriteLine($"Число до методе Increment: {number}");
+Increment(ref number);
+Console.WriteLine($"Число после метода Increment: {number}");
+
+void Sum(int x, int y, out int result)
+{
+    result = x + y;
+}
+
+int num;
+Sum(10, 15, out num);
+Console.WriteLine(num);
 /*
-int Sum(int x, int y)
+void GetRectangleData(int width, int heigth, out int rectArea, out int rectPerimetr)
 {
-    return x + y;
+    rectArea = width * heigth;
+    rectPerimetr = (width + heigth) * 2;
 }
+
+GetRectangleData(10, 20, out var area, out var perimetr);
+Console.WriteLine(area);
+Console.WriteLine(perimetr);
 */
-int result = Sum(10, 15);
-Console.WriteLine(result);
-Console.WriteLine(Sum(5, 6));
-
-string GetMessage() => "hello";
-int Sum(int x, int y) => x + y;
-
-string GetHello()
+void GetRectangleData(in int width,in int heigth, out int rectArea, out int rectPerimetr)
 {
-    return "Hello";
-    Console.WriteLine("After return");
+    rectArea = width * heigth;
+    rectPerimetr = (width + heigth) * 2;
 }
-GetHello();
+int w = 10;
+int h = 20;
 
-void PrintPerson(string name, int age)
-{
-    if (age > 120 || age < 1)
-    {
-        Console.WriteLine("Недопустимый  возраст");
-        return;
-    }
-    Console.WriteLine($"Имя: {name} Возраст {age}");
-}
+GetRectangleData(w, h, out var area, out var perimetr);
 
-PrintPerson("Tom", 38);
-PrintPerson("Timmy", 1234);
+Console.WriteLine(area);
+Console.WriteLine(perimetr);
+
