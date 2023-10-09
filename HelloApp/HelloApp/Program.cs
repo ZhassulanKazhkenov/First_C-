@@ -1,50 +1,76 @@
-﻿/*
-void Increment (int n)
+﻿string name = "Alex";
+switch (name)
 {
-    n++;
-    Console.WriteLine($"Число в методе Increment: {n}");
-}
-*/
-void Increment(ref int n)
-{
-    n++;
-    Console.WriteLine($"Число в методе Increment: {n}");
-}
-
-int number = 5;
-Console.WriteLine($"Число до методе Increment: {number}");
-Increment(ref number);
-Console.WriteLine($"Число после метода Increment: {number}");
-
-void Sum(int x, int y, out int result)
-{
-    result = x + y;
+    case "Tom":
+        Console.WriteLine("Ваше имя - Том");
+        break;
+    case "Zhas":
+        Console.WriteLine("Ваше имя - Zhas");
+        break;
+    case "John":
+        Console.WriteLine("Ваше имя - Том");
+        break;
+    default:
+        Console.WriteLine("Неизвестное имя");
+        break;
 }
 
-int num;
-Sum(10, 15, out num);
-Console.WriteLine(num);
+int number = 1;
+switch (number)
+{
+    case 1:
+        Console.WriteLine("case 1");
+        goto case 5;
+    case 3:
+        Console.WriteLine("case 3");
+        break;
+    case 5:
+        Console.WriteLine("case 5");
+        break;
+    default:
+        Console.WriteLine("default");
+        break;
+}
 /*
-void GetRectangleData(int width, int heigth, out int rectArea, out int rectPerimetr)
+int DoOperation(int op, int a, int b)
 {
-    rectArea = width * heigth;
-    rectPerimetr = (width + heigth) * 2;
+    switch (op)
+    {
+        case 1: return a + b;
+        case 2: return a - b;
+        case 3: return a * b;
+        default: return 0;
+    }
 }
-
-GetRectangleData(10, 20, out var area, out var perimetr);
-Console.WriteLine(area);
-Console.WriteLine(perimetr);
 */
-void GetRectangleData(in int width,in int heigth, out int rectArea, out int rectPerimetr)
+int result1 = DoOperation(1, 10, 5);
+Console.WriteLine(result1);
+
+int result2 = DoOperation(4, 10, 5);
+Console.WriteLine(result2);
+
+int DoOperation(int op, int a, int b)
 {
-    rectArea = width * heigth;
-    rectPerimetr = (width + heigth) * 2;
+    int result = op switch
+    {
+        1 => a + b,
+        2 => a - b,
+        3 => a * b,
+        _ => 0
+    };
+    return result;
 }
-int w = 10;
-int h = 20;
 
-GetRectangleData(w, h, out var area, out var perimetr);
+int DoOperation1(int op, int a, int b) => op switch
+{
+        1 => a + b,
+        2 => a - b,
+        3 => a * b,
+        _ => 0
+};
 
-Console.WriteLine(area);
-Console.WriteLine(perimetr);
+int result3 = DoOperation1(2, 10, 5);
+Console.WriteLine(result3);
 
+int result4 = DoOperation1(4, 10, 5);
+Console.WriteLine(result4);
