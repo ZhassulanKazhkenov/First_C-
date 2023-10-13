@@ -1,22 +1,44 @@
-﻿DoOperation(10, 5, Operation.Add);
-DoOperation(10, 5, Operation.Subtract);
-DoOperation(10, 5, Operation.Multiply);
-DoOperation(10, 5, Operation.Divide);
-void DoOperation(double x, double y, Operation op)
+﻿/*
+Person tom = new();
+Person bob = new("Bob");
+Person sam = new("Sam", 25);
+
+tom.Print();          // Имя: Неизвестно  Возраст: 18
+bob.Print();          // Имя: Bob  Возраст: 18
+sam.Print();
+
+class Person
 {
-    double result = op switch
+    public string name;
+    public int age;
+    public Person() : this("Неизвестно")    // первый конструктор
+    { }
+    public Person(string name) : this(name, 18) // второй конструктор
+    { }
+    public Person(string name, int age)     // третий конструктор
     {
-        Operation.Add => x + y,
-        Operation.Subtract => x - y,
-        Operation.Multiply => x * y,
-        Operation.Divide => x / y
-    };
-    Console.WriteLine(result);
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
 }
-enum Operation
+*/
+Person tom = new Person { name = "Tom", company = { title = "Microsoft" } };
+tom.Print();          // Имя: Tom  Компания: Microsoft
+
+class Person
 {
-    Add,
-    Subtract,
-    Multiply,
-    Divide
+    public string name;
+    public Company company;
+    public Person()
+    {
+        name = "Undefined";
+        company = new Company();
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Компания: {company.title}");
+}
+
+class Company
+{
+    public string title = "Unknown";
 }
