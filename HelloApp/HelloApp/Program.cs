@@ -1,30 +1,63 @@
-﻿Calculator calc = new Calculator();
-calc.Add(1, 2);
-calc.Add(1, 2, 3);
-calc.Add(1, 2, 3, 4);
-calc.Add(1.4, 2.3);
-class Calculator
+﻿//Константы, поля и структуры для чтения
+
+//Константы классы
+/*
+Person zhas = new Person();
+zhas.name = "Aziza";
+zhas.Print();
+
+Console.WriteLine(Person.type);
+//Person.type = "Human";
+class Person
 {
-    public void Add(int a, int b)
+    public const string type = "Person";
+    public string name = "Astana";
+    public void Print()
     {
-        int result = a + b;
-        Console.WriteLine($"Result is {result}");
-    }
-    public void Add(int a, int b, int c)
-    {
-        int result = a + b + c;
-        Console.WriteLine($"Result is {result}");
-    }
-    public int Add(int a,int b,int c,int d)
-    {
-        int result = a + b + c + d;
-        Console.WriteLine($"Result is {result}");
-        return result;
-    }
-    public void Add(double a, double b)
-    {
-        double result = a + b;
-        Console.WriteLine($"Result is {result}");
+        Console.WriteLine($"{type}: {name}");
     }
 }
+*/
 
+/*
+//Поля для чтения и модификатор readonly:
+
+Person zhas = new Person("Aziza");
+Console.WriteLine(zhas.name);
+//zhas.name = "Jax";
+
+class Person
+{
+    public readonly string name = "Undefined";
+    public Person(string fullName)
+    { 
+        name = fullName;
+    }
+    public void ChangeName(string otherName)
+    {
+        //name = otherName;
+    }
+}
+*/
+
+//Структуры для чтения
+/*
+readonly struct Person
+{
+    public readonly string Name;
+    public Person(string fullName)
+    {
+        Name = fullName;
+    }
+}
+*/
+readonly struct Person
+{
+    public readonly string Name { get; }
+    public int Age { get; }
+    public Person(string fullName, int fullAge)
+    {
+        Name = fullName;
+        Age = fullAge;
+    }
+}
