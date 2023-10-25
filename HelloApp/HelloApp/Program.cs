@@ -1,63 +1,32 @@
-﻿//Константы, поля и структуры для чтения
+﻿//Псевдонимы типов и статический импорт
 
-//Константы классы
-/*
-Person zhas = new Person();
-zhas.name = "Aziza";
-zhas.Print();
+//Псевдонимы типов
 
-Console.WriteLine(Person.type);
-//Person.type = "Human";
-class Person
-{
-    public const string type = "Person";
-    public string name = "Astana";
-    public void Print()
-    {
-        Console.WriteLine($"{type}: {name}");
-    }
-}
-*/
+using pechat = System.Console;
+using User = Person;
 
-/*
-//Поля для чтения и модификатор readonly:
-
-Person zhas = new Person("Aziza");
-Console.WriteLine(zhas.name);
-//zhas.name = "Jax";
+User tom = new User("Tom");
+pechat.WriteLine(tom.Name);
 
 class Person
 {
-    public readonly string name = "Undefined";
-    public Person(string fullName)
-    { 
-        name = fullName;
-    }
-    public void ChangeName(string otherName)
-    {
-        //name = otherName;
-    }
+    public string Name { get; set; }
+    public Person(string name) => Name = name;
 }
-*/
 
-//Структуры для чтения
+//Статический импорт:
 /*
-readonly struct Person
+using static System.Console;
+using static Operation;
+ 
+WriteLine(Sum(5, 4));       // 9
+WriteLine(Subtract(5, 4));  // 1
+WriteLine(Multiply(5, 4)); // 20
+
+static class Operation
 {
-    public readonly string Name;
-    public Person(string fullName)
-    {
-        Name = fullName;
-    }
+    public static int Sum(int a, int b) => a + b;
+    public static int Subtract(int a, int b) => a - b;
+    public static int Multiply(int a, int b) => a * b;
 }
 */
-readonly struct Person
-{
-    public readonly string Name { get; }
-    public int Age { get; }
-    public Person(string fullName, int fullAge)
-    {
-        Name = fullName;
-        Age = fullAge;
-    }
-}
