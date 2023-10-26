@@ -1,32 +1,69 @@
-﻿//Псевдонимы типов и статический импорт
+﻿//ОПП наследование
 
-//Псевдонимы типов
+//Наследование
+/*
+Person person = new Person { Name = "Zhas" };
+person.Print();
+Person azi = new Employee { Name = "Aziza" };
+azi.Print();
+class Person
+{
+    private string _name = "";
+    public string Name
+    { 
+        get { return _name; } 
+        set { _name = value; }
+    }
+    public void Print()
+    {
+        Console.WriteLine(Name);
+    }
+}
+*/
+/*
+class Employee : Person
+{
+}
+*/
 
-using pechat = System.Console;
-using User = Person;
+//Доступ к членам базового класса из класса-наследника
+/*
+class Employee :Person
+{
+    public void PrintName()
+    {
+        Console.WriteLine(Name);
+    }
+}
+*/
+//Ключевое слово base
 
-User tom = new User("Tom");
-pechat.WriteLine(tom.Name);
+/*
 
+Person person = new Person("Zhasik");
+person.Print();
+Employee employee = new Employee("Aziza", "Bi-group");
+employee.Print();
 class Person
 {
     public string Name { get; set; }
-    public Person(string name) => Name = name;
+    public Person(string name)
+    {
+        Name = name;
+    }
+    public void Print()
+    {
+        Console.WriteLine(Name);
+    }
 }
 
-//Статический импорт:
-/*
-using static System.Console;
-using static Operation;
- 
-WriteLine(Sum(5, 4));       // 9
-WriteLine(Subtract(5, 4));  // 1
-WriteLine(Multiply(5, 4)); // 20
-
-static class Operation
+class Employee : Person
 {
-    public static int Sum(int a, int b) => a + b;
-    public static int Subtract(int a, int b) => a - b;
-    public static int Multiply(int a, int b) => a * b;
+    public string Company { get; set; }
+    public Employee (string name, string company)
+        :base(name)
+    {
+        Company = company;
+    }
 }
 */
