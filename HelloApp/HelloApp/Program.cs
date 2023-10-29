@@ -1,49 +1,15 @@
-﻿//ОПП наследование
+﻿//Преобразование типов
 
-//Наследование
+//Восходящие преобразование. Upcasting
 /*
-Person person = new Person { Name = "Zhas" };
-person.Print();
-Person azi = new Employee { Name = "Aziza" };
-azi.Print();
-class Person
-{
-    private string _name = "";
-    public string Name
-    { 
-        get { return _name; } 
-        set { _name = value; }
-    }
-    public void Print()
-    {
-        Console.WriteLine(Name);
-    }
-}
+Employee employee = new Employee("Tom", "Google");
+Person person = employee;
+Console.WriteLine(person.Name);
 */
-/*
-class Employee : Person
-{
-}
-*/
-
-//Доступ к членам базового класса из класса-наследника
-/*
-class Employee :Person
-{
-    public void PrintName()
-    {
-        Console.WriteLine(Name);
-    }
-}
-*/
-//Ключевое слово base
-
-/*
-
-Person person = new Person("Zhasik");
-person.Print();
-Employee employee = new Employee("Aziza", "Bi-group");
-employee.Print();
+//Нисходящие преобразования. Downcasting
+Employee employee1 = new Employee("Tom", "Zepter");
+Person person = employee1;
+Employee employee2 = (Employee)person;
 class Person
 {
     public string Name { get; set; }
@@ -53,17 +19,29 @@ class Person
     }
     public void Print()
     {
-        Console.WriteLine(Name);
+        Console.WriteLine($"Person {Name}");
     }
 }
-
 class Employee : Person
 {
-    public string Company { get; set; }
-    public Employee (string name, string company)
-        :base(name)
+    public string Company { get; set;}
+    public  Employee(string name, string company) : base(name)
     {
         Company = company;
     }
 }
-*/
+
+class Client : Person
+{
+    public string Bank { get; set; }
+    public Client(string name, string bank) : base(name)
+    {
+        Bank = bank;
+    }
+}
+//Наследование
+
+
+//Доступ к членам базового класса из класса-наследника
+
+//Ключевое слово base
