@@ -1,15 +1,10 @@
-﻿//Преобразование типов
+﻿//Виртуальные методы и свойства
 
-//Восходящие преобразование. Upcasting
-/*
-Employee employee = new Employee("Tom", "Google");
-Person person = employee;
-Console.WriteLine(person.Name);
-*/
-//Нисходящие преобразования. Downcasting
-Employee employee1 = new Employee("Tom", "Zepter");
-Person person = employee1;
-Employee employee2 = (Employee)person;
+Person bob = new Person("Bob");
+bob.Print(); // вызов метода Print из класса Person
+
+Employee tom = new Employee("Tom", "Microsoft");
+tom.Print(); // вызов метода Print из класса Person
 class Person
 {
     public string Name { get; set; }
@@ -17,31 +12,16 @@ class Person
     {
         Name = name;
     }
-    public void Print()
+    public virtual void Print()
     {
-        Console.WriteLine($"Person {Name}");
+        Console.WriteLine(Name);
     }
 }
 class Employee : Person
 {
-    public string Company { get; set;}
-    public  Employee(string name, string company) : base(name)
+    public string Company { get; set; }
+    public Employee(string name, string company) : base(name)
     {
         Company = company;
     }
 }
-
-class Client : Person
-{
-    public string Bank { get; set; }
-    public Client(string name, string bank) : base(name)
-    {
-        Bank = bank;
-    }
-}
-//Наследование
-
-
-//Доступ к членам базового класса из класса-наследника
-
-//Ключевое слово base
