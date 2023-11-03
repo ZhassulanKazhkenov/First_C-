@@ -2,7 +2,7 @@
 //Переопределение
 
 Person tom = new Employee("Tom", "Microsoft");
-tom.Print();
+tom.Print();        // Tom работает в Microsoft
 class Person
 {
     public string Name { get; set; }
@@ -10,23 +10,22 @@ class Person
     {
         Name = name;
     }
-    public void Print() 
+    public virtual void Print()
     {
         Console.WriteLine(Name);
     }
 }
-
 class Employee : Person
 {
     public string Company { get; set; }
-    public Employee(string name, string company) : base(name)
+    public Employee(string name, string company)
+        : base(name)
     {
         Company = company;
     }
 
-    public new void Print()
+    public override void Print()
     {
         Console.WriteLine($"{Name} работает в {Company}");
     }
 }
-//Скрытие
