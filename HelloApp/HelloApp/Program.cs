@@ -1,76 +1,27 @@
-﻿//Абстрактные классы и члены классов
-//Абстрактные классы
-/*
-Transport car = new Car("машина");
-Transport ship = new Ship("корабль");
-Transport aircraft = new Aircraft("самолет");
+﻿//Обобщения
+// класс компании
 
-car.Move();         // машина движется
-ship.Move();        // корабль движется
-aircraft.Move();    // самолет движется
-abstract class Transport
+Person<int> tom = new Person<int>(546, "Tom");
+Company<Person<int>> microsoft = new Company<Person<int>>(tom);
+
+Console.WriteLine(microsoft.CEO.Id);  // 546
+Console.WriteLine(microsoft.CEO.Name);  // Tom
+
+class Company<P>
 {
+    public P CEO { get; set; }  // президент компании
+    public Company(P ceo)
+    {
+        CEO = ceo;
+    }
+}
+class Person<T>
+{
+    public T Id { get; }
     public string Name { get; }
-    // конструктор абстрактного класса Transport
-    public Transport(string name)
+    public Person(T id, string name)
     {
+        Id = id;
         Name = name;
-    }
-    public void Move() => Console.WriteLine($"{Name} движется");
-}
-// класс корабля
-class Ship : Transport
-{
-    // вызываем конструктор базового класса
-    public Ship(string name) : base(name) { }
-}
-// класс самолета
-class Aircraft : Transport
-{
-    public Aircraft(string name) : base(name) { }
-}
-// класс машины
-class Car : Transport
-{
-    public Car(string name) : base(name) { }
-}
-*/
-//Абстрактные методы
-
-Transport car = new Car();
-Transport ship = new Ship();
-Transport aircraft = new Aircraft();
-
-car.Move();         // машина едет
-ship.Move();        // корабль плывет
-aircraft.Move();    // самолет летит
-
-abstract class Transport
-{
-    public abstract void Move();
-}
-// класс корабля
-class Ship : Transport
-{
-    // мы должны реализовать все абстрактные методы и свойства базового класса
-    public override void Move()
-    {
-        Console.WriteLine("Корабль плывет");
-    }
-}
-// класс самолета
-class Aircraft : Transport
-{
-    public override void Move()
-    {
-        Console.WriteLine("Самолет летит");
-    }
-}
-// класс машины
-class Car : Transport
-{
-    public override void Move()
-    {
-        Console.WriteLine("Машина едет");
     }
 }
