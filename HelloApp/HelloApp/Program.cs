@@ -1,61 +1,33 @@
-﻿//Catch block and exception filters
-//Block Definition Catch
-/*
+﻿//Types of exceptions. Exception class
+ 
 try
 {
     int x = 5;
     int y = x / 0;
     Console.WriteLine($"Результат: {y}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Исключение: {ex.Message}");
+    Console.WriteLine($"Метод: {ex.TargetSite}");
+    Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
+}
+
+try
+{
+    object obj = "you";
+    int num = (int)obj;     // System.InvalidCastException
+    Console.WriteLine($"Результат: {num}");
 }
 catch (DivideByZeroException)
 {
     Console.WriteLine("Возникло исключение DivideByZeroException");
 }
-*/
-try
+catch (IndexOutOfRangeException)
 {
-    int x = 5;
-    int y = x / 0;
-    Console.WriteLine($"Результат: {y}");
+    Console.WriteLine("Возникло исключение IndexOutOfRangeException");
 }
-catch(DivideByZeroException ex)
+catch (Exception ex)
 {
-    Console.WriteLine($"Возникло исключение {ex.Message}");
+    Console.WriteLine($"Исключение: {ex.Message}");
 }
-
-//Exception Filters
-
-int q = 1;
-int w = 0;
-
-try
-{
-    int result3 = q / w;
-    int result4 = w / q;
-}
-catch(DivideByZeroException) when (w == 0)
-{
-    Console.WriteLine("w не должен равен 0");
-}
-catch(DivideByZeroException ez)
-{
-    Console.WriteLine(ez.Message);
-}
-
-int a = 0;
-int b = 1;
-
-try
-{
-    int result5 = a / b;
-    int result6 = b / a;
-}
-catch (DivideByZeroException) when (b == 0)
-{
-    Console.WriteLine("b не должен равен 0");
-}
-catch (DivideByZeroException ez)
-{
-    Console.WriteLine(ez.Message);
-}
-
