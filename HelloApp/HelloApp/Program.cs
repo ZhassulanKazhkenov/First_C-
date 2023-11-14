@@ -1,33 +1,47 @@
-﻿//Types of exceptions. Exception class
- 
+﻿//Exception generation and operator throw
+using System.ComponentModel.Design;
+/*
 try
 {
-    int x = 5;
-    int y = x / 0;
-    Console.WriteLine($"Результат: {y}");
+    Console.WriteLine("Введите имя: ");
+    string? name = Console.ReadLine();
+    if (name == null || name.Length < 2)
+    {
+    throw new Exception("Длина имени меньше 2 символов");
+    }
+    else 
+    {
+    Console.WriteLine($"Ваше имя: {name}");
+    }
 }
-catch (Exception ex)
-{
-    Console.WriteLine($"Исключение: {ex.Message}");
-    Console.WriteLine($"Метод: {ex.TargetSite}");
-    Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
-}
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ошибка: {ex.Message}");
+    }
+*/
 
 try
 {
-    object obj = "you";
-    int num = (int)obj;     // System.InvalidCastException
-    Console.WriteLine($"Результат: {num}");
-}
-catch (DivideByZeroException)
-{
-    Console.WriteLine("Возникло исключение DivideByZeroException");
-}
-catch (IndexOutOfRangeException)
-{
-    Console.WriteLine("Возникло исключение IndexOutOfRangeException");
+    try
+    {
+        Console.Write("Введите имя: ");
+        string? name = Console.ReadLine();
+        if (name == null || name.Length < 2)
+        {
+            throw new Exception("Длина имени меньше 2 символов");
+        }
+        else
+        {
+            Console.WriteLine($"Ваше имя: {name}");
+        }
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Ошибка: {e.Message}");
+        throw;
+    }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Исключение: {ex.Message}");
+    Console.WriteLine(ex.Message);
 }
