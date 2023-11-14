@@ -1,100 +1,47 @@
-﻿//Creating exception classes
-using System.Net.Cache;
-/*
+﻿//Finding the catch block when handling exceptions
 try
 {
-    Person person = new Person { Name = "Zhas", Age = 17 };
+    TestClass.Method1();
 }
-catch(Exception ex)
+catch (DivideByZeroException ex)
 {
-    Console.WriteLine($"Ошибка: {ex.Message}");
+    Console.WriteLine($"Catch в Main : {ex.Message}");
 }
+finally
+{
+    Console.WriteLine("Блок finally в Main");
+}
+Console.WriteLine("Конец метода Main");
 
-class Person
+class TestClass
 {
-    private int age;
-    public string Name { get; set; } = "";
-    public int Age
+    public static void Method1()
     {
-        get => age;
-        set
+        try
         {
-            if (value < 18)
-                throw new Exception("Лицам до 18 регистрация запрещена");
-            else
-                age = value;
+            Method2();
         }
-    }
-}
-*/
-/*
-try
-{
-    Person person = new Person { Name = "Tom", Age = 17 };
-}
-catch (PersonException ex)
-{
-    Console.WriteLine($"Ошибка: {ex.Message}");
-}
-
-class Person
-{
-    private int age;
-    public string Name { get; set; } = "";
-    public int Age
-    {
-        get => age;
-        set
+        catch (IndexOutOfRangeException ex)
         {
-            if (value < 18)
-                throw new PersonException("Лицам до 18 регистрация запрещена");
-            else
-                age = value;
+            Console.WriteLine($"Catch в Method1 : {ex.Message}");
         }
-    }
-}
-
-
-class PersonException : Exception
-{
-    public PersonException(string message)
-        : base(message) { }
-}
-*/
-
-try
-{
-Person person = new Person { Name = "Tom", Age = 17 };
-}
-catch (PersonException ex)
-{
-Console.WriteLine($"Ошибка: {ex.Message}");
-Console.WriteLine($"Некорректное значение: {ex.Value}");
-}
-
-class Person
-{
-    private int age;
-    public string Name { get; set; } = "";
-    public int Age
-    {
-        get => age;
-        set
+        finally
         {
-            if (value < 18)
-                throw new PersonException("Лицам до 18 регистрация запрещена", value);
-            else
-                age = value;
+            Console.WriteLine("Блок finally в Method1");
         }
+        Console.WriteLine("Конец метода Method1");
     }
-}
-
-class PersonException : ArgumentException
-{
-    public int Value { get; }
-    public PersonException(string message, int val)
-        : base(message)
+    static void Method2()
     {
-        Value = val;
+        try
+        {
+            int x = 8;
+            int y = x / 0;
+        }
+        finally
+        {
+            Console.WriteLine("Блок finally в Method2");
+        }
+        Console.WriteLine("Конец метода Method2");
     }
 }
