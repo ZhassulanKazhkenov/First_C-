@@ -1,47 +1,100 @@
-﻿//Exception generation and operator throw
-using System.ComponentModel.Design;
+﻿//Creating exception classes
+using System.Net.Cache;
 /*
 try
 {
-    Console.WriteLine("Введите имя: ");
-    string? name = Console.ReadLine();
-    if (name == null || name.Length < 2)
+    Person person = new Person { Name = "Zhas", Age = 17 };
+}
+catch(Exception ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
+}
+
+class Person
+{
+    private int age;
+    public string Name { get; set; } = "";
+    public int Age
     {
-    throw new Exception("Длина имени меньше 2 символов");
-    }
-    else 
-    {
-    Console.WriteLine($"Ваше имя: {name}");
+        get => age;
+        set
+        {
+            if (value < 18)
+                throw new Exception("Лицам до 18 регистрация запрещена");
+            else
+                age = value;
+        }
     }
 }
-    catch (Exception ex)
+*/
+/*
+try
+{
+    Person person = new Person { Name = "Tom", Age = 17 };
+}
+catch (PersonException ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
+}
+
+class Person
+{
+    private int age;
+    public string Name { get; set; } = "";
+    public int Age
     {
-        Console.WriteLine($"Ошибка: {ex.Message}");
+        get => age;
+        set
+        {
+            if (value < 18)
+                throw new PersonException("Лицам до 18 регистрация запрещена");
+            else
+                age = value;
+        }
     }
+}
+
+
+class PersonException : Exception
+{
+    public PersonException(string message)
+        : base(message) { }
+}
 */
 
 try
 {
-    try
+Person person = new Person { Name = "Tom", Age = 17 };
+}
+catch (PersonException ex)
+{
+Console.WriteLine($"Ошибка: {ex.Message}");
+Console.WriteLine($"Некорректное значение: {ex.Value}");
+}
+
+class Person
+{
+    private int age;
+    public string Name { get; set; } = "";
+    public int Age
     {
-        Console.Write("Введите имя: ");
-        string? name = Console.ReadLine();
-        if (name == null || name.Length < 2)
+        get => age;
+        set
         {
-            throw new Exception("Длина имени меньше 2 символов");
+            if (value < 18)
+                throw new PersonException("Лицам до 18 регистрация запрещена", value);
+            else
+                age = value;
         }
-        else
-        {
-            Console.WriteLine($"Ваше имя: {name}");
-        }
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine($"Ошибка: {e.Message}");
-        throw;
     }
 }
-catch (Exception ex)
+
+class PersonException : ArgumentException
 {
-    Console.WriteLine(ex.Message);
+    public int Value { get; }
+    public PersonException(string message, int val)
+        : base(message)
+    {
+        Value = val;
+    }
 }
