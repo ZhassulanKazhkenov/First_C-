@@ -1,27 +1,87 @@
-﻿//Делегаты
+﻿//Using delegates
+using System.Diagnostics;
 /*
-Message mes;
-mes = Hello;
-mes();
+void PrintSimpleMessage(string message) => Console.WriteLine(message);
 
-void Hello() => Console.WriteLine("Hello Metanit.com");
+var account = new Account(200);
+account.RegisterHandler(PrintSimpleMessage);
+account.Take(100);
+account.Take(150);
 
-delegate void Message();
+public delegate void AccountHandler(string message);
+public class Account
+{
+    int sum;
+    AccountHandler? taken;
+    public Account(int sum) => this.sum = sum;
+    public void RegisterHandler(AccountHandler del)
+    {
+        taken = del;
+    }
+    public void Add(int sum) => this.sum+= sum;
+    public void Take(int sum)
+    {
+        if(this.sum >= sum)
+        {
+            this.sum -=sum;
+            taken?.Invoke($"Со счета списано {sum} y.e");
+        }
+        else
+        {
+            taken?.Invoke($"Недостаточно средств. Баланс: {this.sum} y.e.");
+        }
+    }
+}
 */
+Account account = new Account(200);
+// Добавляем в делегат ссылку на методы
+account.RegisterHandler(PrintSimpleMessage);
+account.RegisterHandler(PrintColorMessage);
+// Два раза подряд пытаемся снять деньги
+account.Take(100);
+account.Take(150);
 
-Message message1 = Welcome.Print;
-Message message2 = new Hello().Display;
+// Удаляем делегат
+account.UnregisterHandler(PrintColorMessage);
+// снова пытаемся снять деньги
+account.Take(50);
 
-message1();
-message2();
-
-delegate void Message();
-
-class Welcome
+void PrintSimpleMessage(string message) => Console.WriteLine(message);
+void PrintColorMessage(string message)
 {
-    public static void Print() => Console.WriteLine("Welcome");
+    // Устанавливаем красный цвет символов
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine(message);
+    // Сбрасываем настройки цвета
+    Console.ResetColor();
 }
-class Hello
+
+public delegate void AccountHandler(string message);
+public class Account
 {
-    public void Display() => Console.WriteLine("Привет");
+    int sum;
+    AccountHandler? taken;
+    public Account(int sum) => this.sum = sum;
+    // Регистрируем делегат
+    public void RegisterHandler(AccountHandler del)
+    {
+        taken += del;
+    }
+    // Отмена регистрации делегата
+    public void UnregisterHandler(AccountHandler del)
+    {
+        taken -= del; // удаляем делегат
+    }
+    public void Add(int sum) => this.sum += sum;
+    public void Take(int sum)
+    {
+        if (this.sum >= sum)
+        {
+            this.sum -= sum;
+            taken?.Invoke($"Со счета списано {sum} у.е.");
+        }
+        else
+            taken?.Invoke($"Недостаточно средств. Баланс: {this.sum} у.е.");
+    }
 }
+
