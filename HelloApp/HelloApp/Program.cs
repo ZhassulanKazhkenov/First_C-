@@ -1,51 +1,29 @@
-﻿//Anonymous methods
+﻿//Lambdas
 /*
-MessageHandler handler = delegate (string mes)
-{
-    Console.WriteLine(mes);
-};
-handler("Hai Hitler!!!");
-
-delegate void MessageHandler(string message);
+Message hello = () => Console.WriteLine("Hello Pidr!!!");
+hello();
+hello();
+hello();
 */
 /*
-ShowMessage("hai!", delegate (string mes)
+Message hello = () =>
 {
-    Console.WriteLine(mes);
-});
+    Console.WriteLine("Hi ");
+    Console.WriteLine("Hitler!!!");
+};
 
-static void ShowMessage(string message, MessageHandler handler)
-{
-    handler(message);
-}
+hello();
 
-delegate void MessageHandler(string message);
+delegate void Message();
 */
 /*
-MessageHandler handler = delegate
-{
-    Console.WriteLine("Слава третьему рейху!!!");
-};
-handler("hello world!");
-
-delegate void MessageHandler(string message);
+var hello = () => Console.WriteLine("Hello");
+hello();
+hello();
+hello();
 */
-/*
-Operation operation = delegate (int x, int y)
-{
-    return x + y;
-};
-int result = operation(4, 5);
-Console.WriteLine(result);
+Operation sum = (x, y) => Console.WriteLine($"{x}+{y} = {x + y}");
+sum(1,2);
+sum(22,14);
 
-delegate int Operation(int x, int y);
-*/
-int z = 8;
-Operation operation = delegate (int x, int y)
-{
-    return z + x + y;
-};
-int result = operation(4, 5);
-Console.WriteLine(result);
-
-delegate int Operation(int x, int y);
+delegate void Operation(int x, int y);
